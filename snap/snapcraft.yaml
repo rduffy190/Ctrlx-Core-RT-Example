@@ -1,0 +1,28 @@
+# Getting started
+# See https://snapcraft.io/docs/getting-started
+# Snapcraft references
+# See https://snapcraft.io/docs/snapcraft-yaml-reference
+
+name: sdk-example
+version: 3.0.0
+grade: stable
+summary: Sample snap to show how to register for services
+description: |
+  This app will register to the main services for the RT bundles 
+base: bare
+confinement: strict
+
+parts:
+  bundle:
+    source: ./generated/bundle
+    plugin: dump
+    organize:
+     '*' : bundle/${SNAPCRAFT_PROJECT_NAME}/
+  
+slots:
+  automation-bundle:
+    interface: content
+    content: automation-bundle-v3
+    source:
+      read:
+        - $SNAP/bundle/${SNAPCRAFT_PROJECT_NAME}

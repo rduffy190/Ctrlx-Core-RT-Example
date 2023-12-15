@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "1.0.0",
+    "configurations": [
+        {
+            "name": "Framework x64",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/boschrexroth/ctrlx-automation-sdk/bin/framework/ubuntu22-gcc-x64/rexroth-automation-frame",
+            "args": ["${workspaceFolder}/generated/config.properties"],
+            "additionalSOLibSearchPath": "/home/boschrexroth/ctrlx-automation-sdk/bin/framework/ubuntu22-gcc-x64/bin",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [{"name":"SNAP_NAME","value": "rexroth-automation-frame"},
+                            {"name": "SNAP_DATA", "value": "${workspaceFolder}/snap-data"},
+                            {"name": "SNAP_COMMON", "value": "${workspaceFolder}/snap-common"}], 
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set path variable to .",
+                    "text": "set env LD_LIBRARY_PATH=/home/boschrexroth/ctrlx-automation-sdk/bin/framework/ubuntu22-gcc-x64/bin",
+                    "ignoreFailures": false
+                }
+            ]
+        }
+      
+    ]
+}

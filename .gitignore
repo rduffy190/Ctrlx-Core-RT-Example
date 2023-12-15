@@ -1,0 +1,10 @@
+*.snap
+.cache/
+build/
+generated/
+parts/
+prime/
+snap-common/
+snap-data/
+solutions/
+stage/
