@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+
+# Build Folders 
+/build
+/generated
+/parts
+/prime
+/snap-data
+/solutions
+/stage
+
+#SNAPS
+*.snap
