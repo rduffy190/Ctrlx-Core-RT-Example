@@ -28,7 +28,7 @@ common::scheduler::SchedEventResponse RTApplication::execute(const common::sched
         outData[m_outMap["XI211208/Channel_1.Value"]/8] = 255; 
       else
         outData[m_outMap["XI211208/Channel_1.Value"]/8] = 0; 
-    }else
+    }
     m_outputs->endAccess(); 
   }
     return common::scheduler::SchedEventResponse::SCHED_EVENT_RESP_OKAY;

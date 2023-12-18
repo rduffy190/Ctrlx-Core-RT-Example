@@ -2,8 +2,8 @@
 # Base CMake file
 #
 # Defines common settings, two further CMake files are used:
-# 1. private/impl/CMakeLists.txt
-# 2. private/bundle/CMakeLists.txt
+# 1. source/impl/CMakeLists.txt
+# 2. source/bundle/CMakeLists.txt
 #
 
 cmake_minimum_required(VERSION 3.10)
