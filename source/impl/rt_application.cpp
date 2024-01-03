@@ -17,10 +17,10 @@ common::scheduler::SchedEventResponse RTApplication::execute(const common::sched
     u_int8_t* outData; 
     auto result = m_inputs->beginAccess(inData,m_inputRev); 
     if(result == DL_OK){
-      int16_t* ulCurrent = static_cast<int16_t*>(static_cast<void*>(&inData[m_inMap["XB_EC_12/UL_Supply_logic.UL_Current"]/8])); 
+      int16_t* ulCurrent =(int16_t*)(&inData[m_inMap["XB_EC_12/UL_Supply_logic.UL_Current"]/8]); 
       TRACE_MSG("UL Current: %i",*ulCurrent); 
-      m_inputs->endAccess(); 
     }
+    m_inputs->endAccess(); 
     result = m_outputs->beginAccess(outData,m_outputRev);
     if(result == comm::datalayer::DlResult::DL_OK){ 
       TRACE_MSG("Writing"); 
