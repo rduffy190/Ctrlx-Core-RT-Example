@@ -17,17 +17,17 @@ common::scheduler::SchedEventResponse RTApplication::execute(const common::sched
     u_int8_t* outData; 
     auto result = m_inputs->beginAccess(inData,m_inputRev); 
     if(result == DL_OK){
-      int16_t* ulCurrent =(int16_t*)(&inData[m_inMap["XB_EC_12/UL_Supply_logic.UL_Current"]/8]); 
+      int16_t* ulCurrent =(int16_t*)(&inData[m_inMap["BusCoupler/UL_Supply_logic.UL_Current"]/8]); 
       TRACE_MSG("UL Current: %i",*ulCurrent); 
     }
     m_inputs->endAccess(); 
     result = m_outputs->beginAccess(outData,m_outputRev);
     if(result == comm::datalayer::DlResult::DL_OK){ 
       TRACE_MSG("Writing"); 
-      if(outData[m_outMap["XI211208/Channel_1.Value"]/8] == 0)
-        outData[m_outMap["XI211208/Channel_1.Value"]/8] = 255; 
+      if(outData[m_outMap["DO_16_1/Channel_1.Value"]/8] == 0)
+        outData[m_outMap["DO_16_1/Channel_1.Value"]/8] = 255; 
       else
-        outData[m_outMap["XI211208/Channel_1.Value"]/8] = 0; 
+        outData[m_outMap["DO_16_1/Channel_1.Value"]/8] = 0; 
     }
     m_outputs->endAccess(); 
   }
