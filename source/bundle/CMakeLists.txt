@@ -18,7 +18,7 @@ set(BUNDLEX_DESCRIPTION "Bundle example to demonstrate scheduler usage.")
 
 # CELIX_DEPENDENCY_DIR is used by CelixConfig.cmake
 set(CELIX_DEPENDENCY_DIR ${SDK_ROOT_DIR})
-set(CELIX_LIBRARIES ${SDK_ROOT_DIR}/bin/oss.celix/${TARGET_PLATFORM}/release)
+set(CELIX_LIBRARIES ${SDK_ROOT_DIR}/bin/oss.celix/${TARGET_PLATFORM})
 set(CELIX_DM_STATIC_CXX_LIB ${CELIX_LIBRARIES}/libcelix_dependency_manager_cxx_static.a)
 set(CELIX_CMAKECELIX_FILE ${SDK_ROOT_DIR}/cmake/oss.celix/CMakeCelix.cmake)
 

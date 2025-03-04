@@ -25,7 +25,7 @@ set_target_properties(${IMPL_LIB} PROPERTIES SKIP_BUILD_RPATH true)
 
 # Neccessary for RtTrace
 target_link_libraries(${IMPL_LIB}
-  ${SDK_ROOT_DIR}/lib/common.log.trace/${TARGET_PLATFORM}/release/libcommon_log_trace_buffered_static.a
+  ${SDK_ROOT_DIR}/lib/common.log.trace/${TARGET_PLATFORM}/libcommon_log_trace_buffered_static.a
 )
 
 # single-configuration generator (Unix Makefile)
