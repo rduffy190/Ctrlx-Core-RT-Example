@@ -2,6 +2,7 @@
 #include "comm/datalayer/datalayer.h"
 #include "common/scheduler/i_scheduler3.h"
 #include <map> 
+#include "../User/tickUpdates.h"
 
 namespace Example{
   class RTApplication:public common::scheduler::ICallable
@@ -27,5 +28,7 @@ namespace Example{
       void openMemory(); 
       void closeMemory(); 
       void destroyClient(); 
+
+      
   };
 }
