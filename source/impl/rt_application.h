@@ -21,7 +21,7 @@ namespace Example{
       std::shared_ptr<comm::datalayer::IMemoryUser> m_outputs;  
       uint32_t m_inputRev; 
       uint32_t m_outputRev; 
-      int m_ticks = 0; 
+      //int m_ticks = 0; 
       std::map<std::string,uint32_t> m_inMap; 
       std::map<std::string,uint32_t> m_outMap; 
       void createClient(); 

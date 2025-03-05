@@ -7,21 +7,21 @@ common::scheduler::SchedEventResponse RTApplication::execute(const common::sched
                                                             comm::datalayer::Variant& param)
 {
   if(eventType == common::scheduler::SchedEventType::SCHED_EVENT_TICK){
-    m_ticks++; 
-    m_ticks = m_ticks%500; 
+    //m_ticks++; 
+    //m_ticks = m_ticks%500; 
   }
-  if(m_ticks == 0 && m_inputs && m_outputs){
-    TRACE_MSG("500 TICKS"); 
+  //if(m_ticks == 0 && m_inputs && m_outputs){
+  //  TRACE_MSG("500 TICKS"); 
     u_int8_t* inData; 
     u_int8_t* outData; 
     auto result = m_inputs->beginAccess(inData,m_inputRev); 
     if(result == DL_OK){
       TickUpdate::sampleInputProcessing(inData, m_inMap);
-    }
+    //}
     m_inputs->endAccess(); 
     result = m_outputs->beginAccess(outData,m_outputRev);
     if(result == comm::datalayer::DlResult::DL_OK){ 
-      TRACE_MSG("Writing"); 
+      //TRACE_MSG("Writing"); 
       TickUpdate::sampleOutputProcessing(outData, m_outMap);
     }
     m_outputs->endAccess(); 
