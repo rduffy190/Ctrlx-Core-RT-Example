@@ -12,7 +12,7 @@ add_library(${IMPL_LIB} SHARED
   trace.cpp
   rt_application.cpp
   rt_applicationFactory.cpp
-  ../User/tickUpdates.cpp
+  ../User/EtherCATUpdates.cpp
 )
 
 target_include_directories(${IMPL_LIB}

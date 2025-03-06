@@ -2,7 +2,7 @@
 #include "comm/datalayer/datalayer.h"
 #include "common/scheduler/i_scheduler3.h"
 #include <map> 
-#include "../User/tickUpdates.h"
+#include "../User/EtherCATUpdates.h"
 
 namespace Example{
   class RTApplication:public common::scheduler::ICallable
