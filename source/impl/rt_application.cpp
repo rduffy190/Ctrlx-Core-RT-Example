@@ -1,5 +1,5 @@
 #include "rt_application.h"
-#include "trace.h"
+#include "Logger.h"
 
 namespace Example{
 common::scheduler::SchedEventResponse RTApplication::execute(const common::scheduler::SchedEventType& eventType,
@@ -20,7 +20,7 @@ common::scheduler::SchedEventResponse RTApplication::execute(const common::sched
     } 
     else
     {
-      TRACE_MSG("Failed to open the input data!")
+      LOG_WARNING("Failed to open the input data!")
     } 
     m_inputs->endAccess(); 
     result = m_outputs->beginAccess(outData, m_outputRev);
@@ -30,7 +30,7 @@ common::scheduler::SchedEventResponse RTApplication::execute(const common::sched
       }
     else
     {
-      TRACE_MSG("Failed to open the output data!")
+      LOG_WARNING("Failed to open the output data!")
     }  
     m_outputs->endAccess(); 
     return common::scheduler::SchedEventResponse::SCHED_EVENT_RESP_OKAY;

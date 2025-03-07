@@ -9,7 +9,8 @@
 set(IMPL_LIB sdk_example_lib)
 
 add_library(${IMPL_LIB} SHARED
-  trace.cpp
+  Trace.cpp
+  ${SDK_ROOT_DIR}/src/common.log.trace/trace_itf_wrapper.cpp
   rt_application.cpp
   rt_applicationFactory.cpp
   ../User/EtherCATUpdates.cpp
@@ -19,6 +20,7 @@ target_include_directories(${IMPL_LIB}
   PRIVATE ${SDK_ROOT_DIR}/include/common.scheduler
   PRIVATE ${SDK_ROOT_DIR}/include/comm.datalayer
   PRIVATE ${SDK_ROOT_DIR}/include/common.log.trace
+  PRIVATE ${SDK_ROOT_DIR}/src/common.log.trace 
 )
 
 # don't set RPATH in shared library of activator because possibility wrong build paths in *.so
@@ -26,7 +28,9 @@ set_target_properties(${IMPL_LIB} PROPERTIES SKIP_BUILD_RPATH true)
 
 # Neccessary for RtTrace
 target_link_libraries(${IMPL_LIB}
+  -Wl,--no-whole-archive ${CELIX_LIBRARIES}
   ${SDK_ROOT_DIR}/lib/common.log.trace/${TARGET_PLATFORM}/libcommon_log_trace_buffered_static.a
+  systemd # required by libcommon_log_trace_buffered_static.a
 )
 
 # single-configuration generator (Unix Makefile)

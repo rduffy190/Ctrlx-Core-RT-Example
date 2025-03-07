@@ -1,6 +1,5 @@
 #include <map> 
 #include "comm/datalayer/datalayer.h"
-#include "../impl/trace.h"
 
 namespace EtherCATUpdate
             {

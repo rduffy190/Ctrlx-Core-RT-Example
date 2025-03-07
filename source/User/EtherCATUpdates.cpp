@@ -1,4 +1,5 @@
 #include "EtherCATUpdates.h"
+#include "../impl/Logger.h"
 
 long int m_ticks = 0;    
 int16_t* StatusWord;
@@ -38,9 +39,9 @@ namespace EtherCATUpdate{
 
     void AT(u_int8_t* inData, std::map<std::string,uint32_t> m_inMap)
     {
-        TRACE_MSG("Writing"); 
+        LOG_INFO("Writing"); 
         //Read in the status word
         StatusWord = (int16_t*)(&inData[m_inMap["Axis1/AT.Drive_status_word"]/8]); 
-        TRACE_MSG("Status Word: %i",(int)*StatusWord); 
+        LOG_INFO("Status Word: %i",(int)*StatusWord); 
     }
 }

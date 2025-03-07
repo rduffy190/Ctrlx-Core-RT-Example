@@ -1,6 +1,7 @@
 #include "celix/BundleActivator.h"
 #include <iostream>
 #include "cmp.h"
+#include "../impl/Logger.h"
 class ExampleActivator{
   public:
     explicit ExampleActivator(const std::shared_ptr<celix::BundleContext>& ctx){
@@ -21,11 +22,13 @@ class ExampleActivator{
                .setRequired(true)
                .setStrategy(celix::dm::DependencyUpdateStrategy::suspend)
                .setCallbacks(&ExampleComponent::setDatalayerService); 
-      component.createServiceDependency<common::log::trace::IRegistrationRealTime2>(ICOMMON_LOG_TRACE_REAL_TIME_2_CPP_NAME)
-               .setVersionRange(ICOMMON_LOG_TRACE_CPP_CONSUMER_RANGE)
-               .setRequired(true)
-               .setStrategy(celix::dm::DependencyUpdateStrategy::suspend)
-               .setCallbacks(&ExampleComponent::setRTTraceService);
+      LOG_INFO("OPTIONAL service common::log::trace::IRegistrationRealTime3");
+      component.createServiceDependency<common::log::trace::IRegistrationRealTime3>(
+                common::log::trace::CPP_INTERFACE_TRACE_REGISTRATION_REAL_TIME_3_NAME)
+                .setVersionRange(common::log::trace::CPP_INTERFACE_TRACE_REGISTRATION_REAL_TIME_3_CONSUMER_RANGE)
+                .setRequired(true)
+                .setStrategy(DependencyUpdateStrategy::suspend)
+                .setCallbacks(&ExampleComponent::traceServiceAdded, &ExampleComponent::traceServiceRemoved);
       component.build(); 
                        
     }
