@@ -11,8 +11,6 @@ void ExampleComponent::start(){
 void ExampleComponent::stop() {
   m_appFactory->resetDataLayer(); 
   m_schedular->unregisterCallableFactory(m_appFactory, true); 
-  //DETACH_TRACE(m_log);
-  //automation::scheduler::g_rt_trace.detachTrace(m_log); 
 }
 void ExampleComponent::deInit(){
       std::cout<<"deInit" << std::endl; 
@@ -55,13 +53,3 @@ void ExampleComponent::traceServiceRemoved(common::log::trace::IRegistrationReal
         LOG_ERROR("DETACH_TRACE failed.")
     }
 }
-
-/*
-void ExampleComponent::setRTTraceService(common::log::trace::IRegistrationRealTime3* log){
-  std::cout<<"Got Trace"<<std::endl; 
-  //automation::scheduler::g_rt_trace.attachTrace(log); 
-  common::log::trace::TraceResult traceResult;
-  ATTACH_TRACE(traceResult, log)
-  m_log = log; 
-}
-*/
