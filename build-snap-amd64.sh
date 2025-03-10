@@ -12,5 +12,5 @@ cmake \
 make install
 popd
 
-snapcraft clean  --destructive-mode
-snapcraft --enable-experimental-target-arch --target-arch=amd64 --destructive-mode
+sudo snapcraft clean
+sudo snapcraft --build-for=amd64
