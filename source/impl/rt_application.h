@@ -2,6 +2,7 @@
 #include "comm/datalayer/datalayer.h"
 #include "common/scheduler/i_scheduler3.h"
 #include <map> 
+#include "../User/EtherCATUpdates.h"
 
 namespace Example{
   class RTApplication:public common::scheduler::ICallable
@@ -20,12 +21,14 @@ namespace Example{
       std::shared_ptr<comm::datalayer::IMemoryUser> m_outputs;  
       uint32_t m_inputRev; 
       uint32_t m_outputRev; 
-      int m_ticks = 0; 
+      //int m_ticks = 0; 
       std::map<std::string,uint32_t> m_inMap; 
       std::map<std::string,uint32_t> m_outMap; 
       void createClient(); 
       void openMemory(); 
       void closeMemory(); 
       void destroyClient(); 
+
+      
   };
 }

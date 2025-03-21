@@ -1,6 +1,6 @@
 #include "rt_applicationFactory.h"
 #include "common/scheduler/callable_configurations_generated.h"
-#include "trace.h"
+#include "Trace.h"
 
 namespace Example{
 std::shared_ptr<common::scheduler::ICallable> RTApplicationFactory::createCallable(const comm::datalayer::Variant& param){

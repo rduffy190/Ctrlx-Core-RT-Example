@@ -1,39 +1,49 @@
 #include "rt_application.h"
-#include "trace.h"
+#include "Logger.h"
 
 namespace Example{
 common::scheduler::SchedEventResponse RTApplication::execute(const common::scheduler::SchedEventType& eventType,
                                                             const common::scheduler::SchedEventPhase& eventPhase,
                                                             comm::datalayer::Variant& param)
 {
-  if(eventType == common::scheduler::SchedEventType::SCHED_EVENT_TICK){
-    m_ticks++; 
-    m_ticks = m_ticks%500; 
-  }
-  
-  if(m_ticks == 0 && m_inputs && m_outputs){
-    TRACE_MSG("500 TICKS"); 
+  switch (eventType)
+  {
+  //if(eventType == common::scheduler::SchedEventType::SCHED_EVENT_TICK)
+  case common::scheduler::SchedEventType::SCHED_EVENT_TICK:
+  {
     u_int8_t* inData; 
     u_int8_t* outData; 
-    auto result = m_inputs->beginAccess(inData,m_inputRev); 
-    if(result == DL_OK){
-      int16_t* ulCurrent =(int16_t*)(&inData[m_inMap["XB_EC_12/UL_Supply_logic.UL_Current"]/8]); 
-      TRACE_MSG("UL Current: %i",*ulCurrent); 
-    }
+    auto result = m_inputs->beginAccess(inData, m_inputRev); 
+    if(result == DL_OK)
+    {
+      EtherCATUpdate::AT(inData, m_inMap);
+    } 
+    else
+    {
+      LOG_WARNING("Failed to open the input data!")
+    } 
     m_inputs->endAccess(); 
-    result = m_outputs->beginAccess(outData,m_outputRev);
-    if(result == comm::datalayer::DlResult::DL_OK){ 
-      TRACE_MSG("Writing"); 
-      if(outData[m_outMap["XI211208/Channel_1.Value"]/8] == 0)
-        outData[m_outMap["XI211208/Channel_1.Value"]/8] = 255; 
-      else
-        outData[m_outMap["XI211208/Channel_1.Value"]/8] = 0; 
-    }
+    result = m_outputs->beginAccess(outData, m_outputRev);
+    if(result == comm::datalayer::DlResult::DL_OK)
+      { 
+        EtherCATUpdate::MDT(outData, m_outMap);
+      }
+    else
+    {
+      LOG_WARNING("Failed to open the output data!")
+    }  
     m_outputs->endAccess(); 
-  }
     return common::scheduler::SchedEventResponse::SCHED_EVENT_RESP_OKAY;
-}
+  }
 
+  case common::scheduler::SchedEventType::SCHED_EVENT_SWITCH_TO_SERVICE:
+  {
+    m_outputs->endAccess();
+    m_inputs->endAccess(); 
+    return common::scheduler::SchedEventResponse::SCHED_EVENT_RESP_OKAY;
+  }
+  }
+}
 void RTApplication::setDatalyer(comm::datalayer::IDataLayerFactory3* datalayerFactory){
   m_datalayer = datalayerFactory; 
   createClient(); 

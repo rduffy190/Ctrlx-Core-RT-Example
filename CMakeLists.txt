@@ -19,7 +19,7 @@ project(sdk_example VERSION 3.0.0)
 #
 # The root directory of the ctrlX AUTOMATION SDK
 #
-set(SDK_ROOT_DIR "/home/boschrexroth/ctrlx-automation-sdk")
+set(SDK_ROOT_DIR "/home/boschrexroth/com.boschrexroth.sdk.control.rt-3.4.1/public")
 
 #
 # Set target dependend variables
