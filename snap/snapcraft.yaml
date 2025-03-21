@@ -6,7 +6,7 @@
 name: sdk-example
 version: 3.0.0
 grade: stable
-summary: Sample snap to show how to register for services
+summary: Boilerplate code for scheduler services with trace and EtherCAT data access
 description: |
   This app will register to the main services for the RT bundles 
 base: bare

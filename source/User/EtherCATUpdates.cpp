@@ -2,9 +2,8 @@
 #include "../impl/Logger.h"
 
 long int m_ticks = 0;    
-int16_t* StatusWord;
-int16_t controlWord = 0x0100;
 int16_t DigitalOutputs = 0xFF;
+Drive axis1;
 
 namespace EtherCATUpdate{
     void MDT(u_int8_t* outData, std::map<std::string,uint32_t> m_outMap)
@@ -18,30 +17,36 @@ namespace EtherCATUpdate{
         }
         //Enable the only drive  
         //Check to see if the drive is in Ab and Error free
-        if (((*StatusWord & 0x8000) != 0) && ((*StatusWord & 0x2000) == 0)) 
+        LOG_INFO("Ab State: %i", axis1.StatusWord & ST_DriveInAb);             
+        LOG_INFO("Erorr State: %i", axis1.StatusWord & ST_DriveError);             
+        if (((axis1.StatusWord & ST_DriveInAb) != 0) && ((axis1.StatusWord & ST_DriveError) == 0)) 
         {
-            controlWord = controlWord | 0xE000; //Enable bits 15,14,13 to enable (0xE000). 
-            controlWord = controlWord | 0x0100; //Set the secondary operation mode
+            axis1.ControlWord = axis1.ControlWord | (CMD_DriveEnable | CMD_DriveHALT | CMD_DriveON); //Enable bits 15,14,13 to enable (0xE000). 
+            axis1.ControlWord = (axis1.ControlWord & CMD_ClearOpMode); //Reset the operation mode
+            axis1.ControlWord = (axis1.ControlWord | CMD_SecondaryOpMode); //Set the secondary operation mode            
         }
         else
         {   //if there is an error or if the drive is not ready then clear the control bits
-            controlWord = controlWord & 0x0100; 
+            axis1.ControlWord = axis1.ControlWord & 0x1FFF; 
         }
-        controlWord = controlWord ^ 0x0400; //toggle the control bit, the 10th bit in the control word
+        axis1.ControlWord = axis1.ControlWord ^ CMD_CommsToggle; //toggle the control bit, the 10th bit in the control word
         //copy over the IO
         std::memcpy(&outData[m_outMap["DO_16_1/Channel_1.Value"]/8], &DigitalOutputs, 2); 
         //copy over the control word
-        std::memcpy(&outData[m_outMap["Axis1/MDT.Master_control_word"]/8], &controlWord, 2); 
+        LOG_INFO("Control Word: %i", axis1.ControlWord);  
+        std::memcpy(&outData[m_outMap["Axis1/MDT.Master_control_word"]/8], &axis1.ControlWord, 2); 
         //copy over the velocity commands
-        int32_t Velocity = 300000;
-        std::memcpy(&outData[m_outMap["Axis1/MDT.VelocityCommand"]/8], &Velocity, 4);
+        //int32_t Velocity = 300000;
+        axis1.CMDVelocity = 300000;
+        std::memcpy(&outData[m_outMap["Axis1/MDT.VelocityCommand"]/8], &axis1.CMDVelocity, 4);
     }
 
     void AT(u_int8_t* inData, std::map<std::string,uint32_t> m_inMap)
     {
         LOG_INFO("Writing"); 
         //Read in the status word
-        StatusWord = (int16_t*)(&inData[m_inMap["Axis1/AT.Drive_status_word"]/8]); 
-        LOG_INFO("Status Word: %i",(int)*StatusWord); 
+        axis1.StatusWord = *(int16_t*)(&inData[m_inMap["Axis1/AT.Drive_status_word"]/8]);         
+        axis1.ActPosition = *(int32_t*)(&inData[m_inMap["Axis1/AT.Position_feedback_value_1"]/8]);         
+        LOG_INFO("Status Word: %i, Actual Position: %i", axis1.StatusWord, axis1.ActPosition); 
     }
 }
