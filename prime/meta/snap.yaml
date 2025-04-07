@@ -1,0 +1,21 @@
+name: sdk-rt-template
+title: SDK-RT Template
+version: 3.0.0
+summary: Tempalte for RT cpp
+description: |
+  Starting point for RT App
+architectures:
+- arm64
+base: bare
+confinement: strict
+grade: stable
+environment:
+  LD_LIBRARY_PATH: ${SNAP_LIBRARY_PATH}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
+  PATH: $SNAP/usr/sbin:$SNAP/usr/bin:$SNAP/sbin:$SNAP/bin:$PATH
+slots:
+  automation-bundle:
+    interface: content
+    content: automation-bundle-v3
+    source:
+      read:
+      - $SNAP/bundle/sdk-rt-template

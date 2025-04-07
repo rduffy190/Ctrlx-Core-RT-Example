@@ -1,0 +1,52 @@
+files: !!set
+  bundle/sdk-rt-template/com.boschrexroth.sdk.rt.template.zip: null
+directories: !!set
+  bundle: null
+  bundle/sdk-rt-template: null
+part-properties:
+  plugin: dump
+  source: ./generated/bundle
+  source-checksum: ''
+  source-branch: ''
+  source-commit: ''
+  source-depth: 0
+  source-subdir: ''
+  source-submodules: null
+  source-tag: ''
+  source-type: ''
+  disable-parallel: false
+  after: []
+  overlay-packages: []
+  stage-snaps: []
+  stage-packages: []
+  build-snaps: []
+  build-packages: []
+  build-environment: []
+  build-attributes: []
+  organize:
+    '*': bundle/sdk-rt-template/
+  overlay:
+  - '*'
+  stage:
+  - '*'
+  prime:
+  - '*'
+  override-pull: null
+  overlay-script: null
+  override-build: null
+  override-stage: null
+  override-prime: null
+  permissions: []
+project-options:
+  application_name: snapcraft
+  arch_triplet: aarch64-linux-gnu
+  target_arch: arm64
+  project_vars_part_name: null
+  project_vars:
+    version:
+      value: 3.0.0
+      updated: false
+    grade:
+      value: stable
+      updated: false
+overlay-hash: 6554e32fa718d54160d0511b36f81458e4cb2357

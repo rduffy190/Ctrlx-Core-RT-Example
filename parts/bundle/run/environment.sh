@@ -1,0 +1,33 @@
+# Environment
+## Application environment
+export SNAPCRAFT_ARCH_TRIPLET="aarch64-linux-gnu"
+export SNAPCRAFT_TARGET_ARCH="arm64"
+export SNAPCRAFT_PARALLEL_BUILD_COUNT="8"
+export SNAPCRAFT_PROJECT_VERSION="3.0.0"
+export SNAPCRAFT_PROJECT_GRADE="stable"
+export SNAPCRAFT_PROJECT_DIR="/home/riley/dev/RealTimeAppTemplate"
+export SNAPCRAFT_PROJECT_NAME="sdk-rt-template"
+export SNAPCRAFT_STAGE="/home/riley/dev/RealTimeAppTemplate/stage"
+export SNAPCRAFT_PRIME="/home/riley/dev/RealTimeAppTemplate/prime"
+export SNAPCRAFT_PART_SRC="/home/riley/dev/RealTimeAppTemplate/parts/bundle/src"
+export SNAPCRAFT_PART_SRC_WORK="/home/riley/dev/RealTimeAppTemplate/parts/bundle/src"
+export SNAPCRAFT_PART_BUILD="/home/riley/dev/RealTimeAppTemplate/parts/bundle/build"
+export SNAPCRAFT_PART_BUILD_WORK="/home/riley/dev/RealTimeAppTemplate/parts/bundle/build"
+export SNAPCRAFT_PART_INSTALL="/home/riley/dev/RealTimeAppTemplate/parts/bundle/install"
+## Part environment
+export CRAFT_ARCH_TRIPLET="aarch64-linux-gnu"
+export CRAFT_TARGET_ARCH="arm64"
+export CRAFT_PARALLEL_BUILD_COUNT="8"
+export CRAFT_PROJECT_DIR="/home/riley/dev/RealTimeAppTemplate"
+export CRAFT_STAGE="/home/riley/dev/RealTimeAppTemplate/stage"
+export CRAFT_PRIME="/home/riley/dev/RealTimeAppTemplate/prime"
+export CRAFT_PROJECT_NAME="sdk-rt-template"
+export CRAFT_PART_NAME="bundle"
+export CRAFT_STEP_NAME="BUILD"
+export CRAFT_PART_SRC="/home/riley/dev/RealTimeAppTemplate/parts/bundle/src"
+export CRAFT_PART_SRC_WORK="/home/riley/dev/RealTimeAppTemplate/parts/bundle/src"
+export CRAFT_PART_BUILD="/home/riley/dev/RealTimeAppTemplate/parts/bundle/build"
+export CRAFT_PART_BUILD_WORK="/home/riley/dev/RealTimeAppTemplate/parts/bundle/build"
+export CRAFT_PART_INSTALL="/home/riley/dev/RealTimeAppTemplate/parts/bundle/install"
+## Plugin environment
+## User environment

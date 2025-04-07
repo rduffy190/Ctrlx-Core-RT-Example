@@ -3,15 +3,15 @@
 # Snapcraft references
 # See https://snapcraft.io/docs/snapcraft-yaml-reference
 
-name: sdk-example
+name: sdk-rt-template
+title: SDK-RT Template
 version: 3.0.0
 grade: stable
-summary: Boilerplate code for scheduler services with trace and EtherCAT data access
+summary: Tempalte for RT cpp
 description: |
-  This app will register to the main services for the RT bundles 
+  Starting point for RT App
 base: bare
 confinement: strict
-
 
 architectures:
   - build-on: [amd64, arm64]

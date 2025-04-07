@@ -1,35 +1,319 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "1.0.0",
-    "configurations": [
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "local amd64: rexroth-automation-frame",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/home/riley/com.boschrexroth.sdk.control.rt-2.6.1/public/bin/app.automationcore/ubuntu22-gcc-x64/rexroth-automation-frame",
+      "args": [
+        "${workspaceFolder}/generated/config.properties"
+      ],
+      "additionalSOLibSearchPath": "/home/riley/com.boschrexroth.sdk.control.rt-2.6.1/public/bin/oss.celix/ubuntu22-gcc-x64",
+      "stopAtEntry": true,
+      "preLaunchTask": "build-debug",
+      "cwd": "${workspaceFolder}",
+      "environment": [
         {
-            "name": "Framework x64",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "/home/boschrexroth/ctrlx-automation-sdk/bin/framework/ubuntu22-gcc-x64/rexroth-automation-frame",
-            "args": ["${workspaceFolder}/generated/config.properties"],
-            "additionalSOLibSearchPath": "/home/boschrexroth/ctrlx-automation-sdk/bin/framework/ubuntu22-gcc-x64/bin",
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [{"name":"SNAP_NAME","value": "rexroth-automation-frame"},
-                            {"name": "SNAP_DATA", "value": "${workspaceFolder}/snap-data"},
-                            {"name": "SNAP_COMMON", "value": "${workspaceFolder}/snap-common"}], 
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set path variable to .",
-                    "text": "set env LD_LIBRARY_PATH=/home/boschrexroth/ctrlx-automation-sdk/bin/framework/ubuntu22-gcc-x64/bin",
-                    "ignoreFailures": false
-                }
-            ]
+          "name": "SNAP_ENV",
+          "value": "DEBUG"
+        },
+        {
+          "name": "SNAP_NAME",
+          "value": "rexroth-automationcore"
+        },
+        {
+          "name": "SNAP_VERSION",
+          "value": "3.0.0"
+        },
+        {
+          "name": "SNAP_REVISION",
+          "value": "x0"
+        },
+        {
+          "name": "SNAP_ARCH",
+          "value": "amd64"
+        },
+        {
+          "name": "SNAP",
+          "value": "/tmp/${workspaceFolderBasename}/snap"
+        },
+        {
+          "name": "SNAP_COMMON",
+          "value": "/tmp/${workspaceFolderBasename}/snap-common"
+        },
+        {
+          "name": "SNAP_DATA",
+          "value": "/tmp/${workspaceFolderBasename}/snap-data"
+        },
+        {
+          "name": "SNAP_USER_COMMON",
+          "value": "/tmp/${workspaceFolderBasename}/snap-user-common"
+        },
+        {
+          "name": "SNAP_USER_DATA",
+          "value": "/tmp/${workspaceFolderBasename}/snap-user-data"
+        },
+        {
+          "name": "LD_BIND_NOW",
+          "value": "1"
         }
-      
-    ]
+      ],
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Set path variable to .",
+          "text": "set env LD_LIBRARY_PATH=/home/riley/com.boschrexroth.sdk.control.rt-2.6.1/public/bin/oss.celix/ubuntu22-gcc-x64",
+          "ignoreFailures": false
+        },
+        {
+          "description": "Disable stopping and printing when Signal SIGSTOP occured",
+          "text": "handle SIGSTOP nostop noprint"
+        },
+        {
+          "description": "Disable stopping when SIG39 occured",
+          "text": "handle SIG39 nostop"
+        }
+      ]
+    },
+    {
+      "name": "remote amd64: rexroth-automation-frame",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/home/riley/com.boschrexroth.sdk.control.rt-2.6.1/public/bin/app.automationcore/ubuntu22-gcc-x64/rexroth-automation-frame", //This executable is NOT debugged. All we need is an amd64 executable.
+      "cwd": "${workspaceFolder}",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "miDebuggerServerAddress": "${input:IPAddress}:12345",
+      "stopAtEntry": true,
+      "targetArchitecture": "amd64",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Disable stopping and printing when Signal SIGSTOP occured",
+          "text": "handle SIGSTOP nostop noprint"
+        },
+        {
+          "description": "Disable stopping when SIG39 occured",
+          "text": "handle SIG39 nostop"
+        }
+      ]
+    },
+    {
+      "name": "remote arm64 (aarch64): rexroth-automation-frame",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/home/riley/com.boschrexroth.sdk.control.rt-2.6.1/public/bin/app.automationcore/ubuntu22-gcc-aarch64/rexroth-automation-frame", //This executable is NOT debugged. All we need is an arm64 executable.
+      "cwd": "${workspaceFolder}",
+      "miDebuggerPath": "/usr/bin/gdb-multiarch",
+      "miDebuggerServerAddress": "${input:IPAddress}:12345",
+      "stopAtEntry": true,
+      "targetArchitecture": "arm64",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Disable stopping and printing when Signal SIGSTOP occured",
+          "text": "handle SIGSTOP nostop noprint"
+        },
+        {
+          "description": "Disable stopping when SIG39 occured",
+          "text": "handle SIG39 nostop"
+        }
+      ]
+    },
+    {
+      "type": "bashdb",
+      "request": "launch",
+      "name": "Debug script build-upload-log-snap.sh",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/build-upload-log-snap.sh",
+      "args": [
+        "-arch",
+        "${input:Arch}",
+        "-addr",
+        "${input:IPAddress}",
+        "-ssl-port",
+        "${input:SSLPort}",
+        "-ssl-usr",
+        "${input:SSLUser}",
+        "-ssl-pwd",
+        "${input:SSLPwd}",
+        "-ssh-port",
+        "${input:SSHPort}",
+        "-ssh-usr",
+        "${input:SSHUser}",
+        "-ssh-pwd",
+        "${input:SSHPwd}",
+        "-build",
+        "${input:Build}",
+        "-upload",
+        "${input:Upload}",
+        "-service",
+        "${input:Service}",
+        "-operation",
+        "${input:Operation}",
+        "-automatic",
+        "${input:Automatic}",
+        "-logs",
+        "${input:Logs}",
+        "-remote-debug",
+        "${input:RemoteDebug}"
+      ]
+    },
+    {
+      "type": "bashdb",
+      "request": "launch",
+      "name": "Debug script build-upload-log-snap.sh -PF (ctrlX virtual with port forwarding)",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/build-upload-log-snap.sh",
+      "args": [
+        "-PF"
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "Build",
+      "type": "pickString",
+      "description": "Build snap?",
+      "options": [
+        "y",
+        "n"
+      ],
+      "default": "y"
+    },
+    {
+      "id": "Upload",
+      "type": "pickString",
+      "description": "Upload snap?",
+      "options": [
+        "y",
+        "n"
+      ],
+      "default": "y"
+    },
+    {
+      "id": "RemoteDebug",
+      "type": "pickString",
+      "description": "Start remote debugger?",
+      "options": [
+        "y",
+        "n"
+      ],
+      "default": "y"
+    },
+    {
+      "id": "IPAddress",
+      "type": "promptString",
+      "description": "IP address, 10.0.2.2 for ctrlX virtual",
+      "default": "192.168.1.1"
+    },
+    {
+      "id": "SSLPort",
+      "type": "promptString",
+      "description": "SSL (HTTPS) port number, 8443 for ctrlX virtual",
+      "default": "443"
+    },
+    {
+      "id": "Service",
+      "type": "pickString",
+      "description": "Switch to state SERVICE before installing the snap: y/n",
+      "options": [
+        "y",
+        "n"
+      ],
+      "default": "y"
+    },
+    {
+      "id": "Operation",
+      "type": "pickString",
+      "description": "Switch to state OPERATION after installing the snap: y/n",
+      "options": [
+        "y",
+        "n"
+      ],
+      "default": "y"
+    },
+    {
+      "id": "Automatic",
+      "type": "pickString",
+      "description": "Switch scheduler to Automatic mode after installing the snap: y/n",
+      "options": [
+        "y",
+        "n"
+      ],
+      "default": "y"
+    },
+    {
+      "id": "SSLUser",
+      "type": "promptString",
+      "description": "SSL (HTTPS) user name",
+      "default": "boschrexroth"
+    },
+    {
+      "id": "SSLPwd",
+      "type": "promptString",
+      "password": true,
+      "description": "SSL (HTTPS) password",
+      "default": "boschrexroth"
+    },
+    {
+      "id": "Arch",
+      "type": "pickString",
+      "description": "CPU architecture?",
+      "options": [
+        "arm64",
+        "amd64"
+      ],
+      "default": "arm64"
+    },
+    {
+      "id": "Logs",
+      "type": "pickString",
+      "description": "Show logs - SSH must be enabled on ctrlX: y/n",
+      "options": [
+        "y",
+        "n"
+      ],
+      "default": "y"
+    },
+    {
+      "id": "SSHPort",
+      "type": "promptString",
+      "description": "SSH port number, 8022 for ctrlX virtual",
+      "default": "22"
+    },
+    {
+      "id": "SSHUser",
+      "type": "promptString",
+      "description": "SSH user name",
+      "default": "rexroot"
+    },
+    {
+      "id": "SSHPwd",
+      "type": "promptString",
+      "password": true,
+      "description": "SSH password",
+      "default": "rexroot"
+    }
+  ]
 }

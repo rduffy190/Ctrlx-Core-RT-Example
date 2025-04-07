@@ -1,0 +1,118 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "common",
+            "displayName": "common",
+            "description": "Common base config using Makefile generator",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build",
+            "installDir": "${sourceDir}/generated",
+            "hidden": true,
+            "cacheVariables": {
+                "SDK_ROOT_DIR": "/home/riley/com.boschrexroth.sdk.control.rt-2.6.1/public/"
+            }
+        },
+        {
+            "name": "amd64",
+            "displayName": "amd64",
+            "description": "Base config for amd64 target",
+            "inherits": "common",
+            "hidden": true,
+            "toolchainFile": "/home/riley/com.boschrexroth.sdk.control.rt-2.6.1/public/cmake/toolchain/linux-amd64.cmake"
+        },
+        {
+            "name": "arm64",
+            "displayName": "arm64",
+            "description": "Base config for arm64 target",
+            "inherits": "common",
+            "hidden": true,
+            "toolchainFile": "/home/riley/com.boschrexroth.sdk.control.rt-2.6.1/public/cmake/toolchain/linux-arm64.cmake"
+        },
+        {
+            "name": "amd64-debug",
+            "displayName": "amd64 Debug",
+            "description": "Debug config for amd64 target",
+            "inherits": "amd64",
+            "debug": {
+                "output": true
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "arm64-debug",
+            "displayName": "arm64 Debug",
+            "description": "Debug config for arm64 target",
+            "inherits": "arm64",
+            "debug": {
+                "output": true
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "amd64-release",
+            "displayName": "amd64 Release",
+            "description": "Release config for amd64 target",
+            "inherits": "amd64",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "arm64-release",
+            "displayName": "arm64 Release",
+            "description": "Release config for arm64 target",
+            "inherits": "arm64",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "amd64-debug",
+            "displayName": "amd64 Debug",
+            "description": "Debug build for amd64 target",
+            "configurePreset": "amd64-debug",
+            "targets": [
+                "install"
+            ]
+        },
+        {
+            "name": "arm64-debug",
+            "displayName": "arm64 Debug",
+            "description": "Debug build for arm64 target",
+            "configurePreset": "arm64-debug",
+            "targets": [
+                "install"
+            ]
+        },
+        {
+            "name": "amd64-release",
+            "displayName": "amd64 Release",
+            "description": "Release build for amd64 target",
+            "configurePreset": "amd64-release",
+            "targets": [
+                "install"
+            ]
+        },
+        {
+            "name": "arm64-release",
+            "displayName": "arm64 Release",
+            "description": "Release build for arm64 target",
+            "configurePreset": "arm64-release",
+            "targets": [
+                "install"
+            ]
+        }
+    ]
+}
